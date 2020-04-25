@@ -21,7 +21,7 @@ jobs:
       - name: Lint Go Code
         run: |
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh |sudo  sh -s -- -b /usr/local/bin v1.25.0
-          golang-ci run . -v
+          golangci-lint run . -v
 
   test-unit:
     name: Unit Tests
@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Run Tests
-        run: make test-coverage
+        run: make test-cover
 
       # - name: Upload Coverage report to Codacy
       #   run: |
