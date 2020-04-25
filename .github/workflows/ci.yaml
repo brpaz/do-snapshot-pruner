@@ -76,10 +76,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Fetch latest tag
+      - name: Unshallow
+        run: git fetch --prune --unshallow
+      - name: Get Latest Tag
         run: |
-          TAG=$( git tag | tail -1)
+          git fetch --tags
+          TAG=$(git tag | tail -1)
           git checkout $TAG
+          echo ::set-env name=GORELEASER_CURRENT_TAG::$(git tag | tail -1)
       - name: Set up Go
         uses: actions/setup-go@v1
         with:
