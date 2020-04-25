@@ -1,0 +1,18 @@
+FROM alpine:3.11
+
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+
+COPY do-snapshot-pruner /
+ENTRYPOINT ["/do-snapshot-pruner"]
+
+LABEL maintainer="Bruno Paz <oss@brunopaz.net>" \
+	org.opencontainers.image.title="DigitalOcean Snapshot Pruner" \
+	org.opencontainers.image.description="Deletes old snapshots from DigitalOcean" \
+	org.opencontainers.image.url="https://github.com/brpaz/do-snapshot-pruner" \
+	org.opencontainers.image.source="git@github.com:brpaz/do-snapshot-pruner" \
+	org.opencontainers.image.name="do-snpashot-pruner" \
+	org.opencontainers.image.created=${BUILD_DATE} \
+	org.opencontainers.image.revision=${VCS_REF} \
+	org.opencontainers.image.version=${VERSION}
