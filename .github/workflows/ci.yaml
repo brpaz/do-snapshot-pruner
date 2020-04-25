@@ -6,8 +6,8 @@ on:
   pull_request:
 
 jobs:
-  lint:
-    name: Lint
+  lint-go:
+    name: Lint Go
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go
@@ -49,7 +49,7 @@ jobs:
     name: Tag Release
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/integration' && github.event_name == 'push'
-    needs: [test]
+    needs: [lint-go, test-unit]
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1

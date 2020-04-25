@@ -3,7 +3,7 @@
 > Command Line tool to automatically delete old volume snapshots on [DigitalOcean](https://digitalocean.com).
 
 [![GitHub release](https://img.shields.io/github/v/release/brpaz/do-snapshot-pruner?style=for-the-badge)](https://github.com/brpaz/do-snapshot-pruner/releases)
-[![Go Report Card](https://goreportcard.com/badge/github.com/<%= repoSlug %>)](https://goreportcard.com/report/github.com/brpaz/do-snapshot-pruner)
+[![Go Report Card](https://goreportcard.com/badge/github.com/brpaz/do-snapshot-pruner)](https://goreportcard.com/report/github.com/brpaz/do-snapshot-pruner)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge)](https://conventionalcommits.org)
@@ -12,21 +12,13 @@
 
 [DigitalOcean](https://digitalocean.com) doesn´t provide an automatic way to delete old snapshots.
 
-## Getting Started
 
-### Pre-requisites
+## Install
 
+This recommended way is to download the latest binary for your system from the [Releases](https://github.com/brpaz/do-snapshot-pruner/releases) page.
 
-### Install
+You can also use our [Docker Image](https://hub.docker.com/repository/docker/brpaz/do-snapshot-pruner).
 
-There are many ways you can run install this tool:
-
-* Downloading the binary directly from Releases tab and run in locally or cronjob.
-* To use in Kubernetes, you can use this image from DockerHub.
-
-```sh
-npm install
-```
 
 ## Usage
 
@@ -39,6 +31,11 @@ Where:
 * "n" -> The number of days before current date to delete. For Exemple if you see this value with "3", the tool will delete all the snaphots older than 3 days.
 * "t" -> The DigitalOcean API token. You can get yours [here](https://cloud.digitalocean.com/account/api/tokens). Optionally you can also set the "DO_TOKEN" envrionment variable.
 
+Or with docker:
+
+```sh
+docker run -it brpaz/do-snapshot-pruner:latest -t <do_token> -n 5
+```
 
 ## Run tests
 
