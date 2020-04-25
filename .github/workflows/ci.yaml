@@ -80,8 +80,8 @@ jobs:
         run: git fetch --prune --unshallow
       - name: Get Latest Tag
         run: |
-          git fetch
-          echo ::set-env name=GORELEASER_CURRENT_TAG::$(git tag | tail -1)
+          TAG=$( git tag | tail -1)
+          git checkout $TAG
       - name: Set up Go
         uses: actions/setup-go@v1
         with:
