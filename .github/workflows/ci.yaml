@@ -59,11 +59,6 @@ jobs:
           node-version: "12.x"
       - name: Bump version and Generate Changelog
         run: |
-          git config user.name "$(git --no-pager log --format=format:'%an' -n 1)"
-          git config user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
-          npx standard-version -no-verify
-          git remote rm origin
-          git remote add origin https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
           git push --follow-tags origin HEAD:master
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
