@@ -3,7 +3,8 @@ name: CI
 # This workflow will run on master branch and on any pull requests targeting master
 on:
   push:
-    - branches
+    - branches:
+        - "*"
   pull_request:
 
 jobs:
