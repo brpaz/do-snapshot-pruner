@@ -11,14 +11,16 @@ builds:
     ldflags:
       - -X github.com/brpaz/do-snapshot-pruner/cmd.buildVersion={{.Version}}
       - -X github.com/brpaz/do-snapshot-pruner/cmd.buildCommit={{.FullCommit}}
-      - -X github.com/brpaz/do-snapshot-pruner/cmd.buildDate={{.Dare}}
+      - -X github.com/brpaz/do-snapshot-pruner/cmd.buildDate={{.Date}}
     env:
       - CGO_ENABLED=0
+
 archives:
   - format: tar.gz
 
 nfpms:
-  - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+  - id: default
+    file_name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     maintainer: Bruno Paz <oss@brunopaz.net>
     description: Command Line tool to automatically delete old volume snapshots on DigitalOcean
     license: MIT
