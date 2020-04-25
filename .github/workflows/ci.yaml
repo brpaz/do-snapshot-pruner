@@ -39,7 +39,7 @@ jobs:
         run: make test-cover
 
       - name: Upload Coverage report to Codacy
-        uses: brpaz/godacov-action@v1
+        uses: brpaz/godacov-action@v1.1.0
         with:
           reportPath: "coverage/cover.out"
           codacyToken: ${{ secrets.CODACY_TOKEN }}
