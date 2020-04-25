@@ -3,10 +3,11 @@
 > Command Line tool to automatically delete old volume snapshots on [DigitalOcean](https://digitalocean.com).
 
 [![CI Status](https://img.shields.io/github/workflow/status/brpaz/do-snapshot-pruner/CI?color=orange&label=actions&logo=github&logoColor=orange&style=for-the-badge)](https://github.com/brpaz/do-snapshot-pruner/actions)
-[![GitHub release](https://img.shields.io/github/v/release/brpaz/do-snapshot-pruner?style=for-the-badge)](https://github.com/brpaz/do-snapshot-pruner/releases)
+[![Codacy grade](https://img.shields.io/codacy/grade/2cac107e656b4507888fc13ba2fe4702?style=for-the-badge)](https://www.codacy.com/manual/brpaz/do-snapshot-pruner)
+![Code coverage](https://img.shields.io/codacy/coverage/2cac107e656b4507888fc13ba2fe4702?style=for-the-badge)
 [![Go Report Card](https://goreportcard.com/badge/github.com/brpaz/do-snapshot-pruner?style=for-the-badge)](https://goreportcard.com/report/github.com/brpaz/do-snapshot-pruner)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge)](https://conventionalcommits.org)
 
 ## Motivation

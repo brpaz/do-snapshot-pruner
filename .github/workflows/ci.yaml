@@ -38,17 +38,17 @@ jobs:
       - name: Run Tests
         run: make test-cover
 
-      # - name: Upload Coverage report to Codacy
-      #   run: |
-      #     export PATH=$PATH:$(go env GOPATH)/bin
-      #     go get github.com/schrej/godacov
-      #     godacov -t $CODACY_TOKEN -r ./coverage/cover.out -c $GITHUB_SHA
-      #   env:
-      #     CODACY_TOKEN: ${{secrets.CODACY_TOKEN}}
+      - name: Upload Coverage report to Codacy
+        uses: brpaz/godacov-action@v1
+        with:
+          reportPath: "coverage/cover.out"
+          codacyToken: ${{ secrets.CODACY_TOKEN }}
+          commitId: ${{ github.sha }}
+
   tag:
     name: Tag Release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/integration' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     needs: [lint-go, test-unit]
     steps:
       - uses: actions/checkout@v1
