@@ -4,7 +4,7 @@
 
 [![CI Status](https://img.shields.io/github/workflow/status/brpaz/do-snapshot-pruner/CI?color=orange&label=actions&logo=github&logoColor=orange&style=for-the-badge)](https://github.com/brpaz/do-snapshot-pruner/actions)
 [![GitHub release](https://img.shields.io/github/v/release/brpaz/do-snapshot-pruner?style=for-the-badge)](https://github.com/brpaz/do-snapshot-pruner/releases)
-[![Go Report Card](https://goreportcard.com/badge/github.com/brpaz/do-snapshot-pruner)](https://goreportcard.com/report/github.com/brpaz/do-snapshot-pruner)
+[![Go Report Card](https://goreportcard.com/badge/github.com/brpaz/do-snapshot-pruner?style=for-the-badge)](https://goreportcard.com/report/github.com/brpaz/do-snapshot-pruner)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge)](https://conventionalcommits.org)
