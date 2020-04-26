@@ -13,11 +13,10 @@ var (
 	buildDate    = "unknown"
 	versionCmd   = &cobra.Command{
 		Use:   "version",
-		Short: "Version will output the current build information",
+		Short: "Outputs the Command version",
 		Long:  ``,
 		Run: func(_ *cobra.Command, _ []string) {
 			versionOutput := goversion.New(buildVersion, buildCommit, buildDate)
-
 			fmt.Printf("%+v", versionOutput.ToJSON())
 		},
 	}

@@ -9,6 +9,12 @@ import (
 	"github.com/digitalocean/godo"
 )
 
+const (
+	ResourceTypeDroplet = "droplet"
+	ResourceTypeVolume  = "volume"
+	ResourceTypeAll     = "all"
+)
+
 // Options A struct that encapsulates the configuration options for the prune job.
 type Options struct {
 	DaysToDelete int
@@ -45,7 +51,6 @@ func Prune(doToken string, opts Options) error {
 // Calls DigitalOcean API and filters the snapshots by the creation date, returing a list of snapshot ids
 // that match the specified date interval.
 func findSnapshotsToDelete(client *godo.Client, opts Options) ([]string, error) {
-
 	snapshotsToDelete := make([]string, 0)
 
 	snapshots, _, err := client.Snapshots.List(context.TODO(), &godo.ListOptions{
@@ -60,6 +65,12 @@ func findSnapshotsToDelete(client *godo.Client, opts Options) ([]string, error) 
 	maxTime := time.Now().UTC().AddDate(0, 0, -opts.DaysToDelete)
 
 	for _, snapshot := range snapshots {
+
+		// Filter by Resource Type
+		if opts.ResourceType != ResourceTypeAll && opts.ResourceType != snapshot.ResourceType {
+			continue
+		}
+
 		snapshotTime, err := time.Parse(time.RFC3339Nano, snapshot.Created)
 		if err != nil {
 			log.Println("ERROR: Cannot parse snapshot creation date", err)

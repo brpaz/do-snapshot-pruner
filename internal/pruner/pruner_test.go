@@ -77,7 +77,7 @@ func TestDoNothingIfNoSnapshotsFound(t *testing.T) {
 	assert.Nil(t, err)
 }
 
-func TestCallDeleteSnapshot(t *testing.T) {
+func TestWithSnapshotsToDelete(t *testing.T) {
 
 	var logOutput bytes.Buffer
 	log.SetOutput(&logOutput)
@@ -119,4 +119,42 @@ func TestCallDeleteSnapshot(t *testing.T) {
 	assert.Contains(t, logStr, "Deleting snapshot 1")
 	assert.Contains(t, logStr, "Deleting snapshot 2")
 	assert.NotContains(t, logStr, "Deleting snapshot 3")
+}
+
+func TestWithSnapshotsToDeleteFilteredByResourceType(t *testing.T) {
+
+	var logOutput bytes.Buffer
+	log.SetOutput(&logOutput)
+
+	data, err := loadMockResponseFile("snapshots_list_response.json")
+
+	data.Snapshots[0].CreatedAt = time.Now().AddDate(0, 0, -5)
+	data.Snapshots[1].CreatedAt = time.Now().AddDate(0, 0, -10)
+	data.Snapshots[2].CreatedAt = time.Now().AddDate(0, 0, -2)
+
+	if err != nil {
+		t.Fatal("Cannot open response mock file", err)
+	}
+
+	defer gock.Off()
+	defer gock.DisableNetworking()
+
+	gock.New(apiEndpoint).
+		Get("/snapshots").
+		Reply(200).
+		JSON(data)
+
+	gock.New(apiEndpoint).
+		Delete("/v2/snapshots/2").
+		Reply(204)
+
+	err = pruner.Prune(testToken, pruner.Options{
+		DaysToDelete: 5,
+		ResourceType: pruner.ResourceTypeVolume,
+	})
+
+	assert.Nil(t, err)
+
+	logStr := logOutput.String()
+	assert.Contains(t, logStr, "Deleting snapshot 2")
 }

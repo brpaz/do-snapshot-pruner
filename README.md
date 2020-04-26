@@ -12,7 +12,7 @@
 
 ## Motivation
 
-[DigitalOcean](https://digitalocean.com) doesn´t provide an automatic way to delete old snapshots.
+[DigitalOcean](https://digitalocean.com) doesn´t provide an automatic way to delete old snapshots. This tool provides a simple way to automate that.
 
 ## Install
 
@@ -20,23 +20,25 @@ This recommended way is to download the latest binary for your system from the [
 
 You can also use our [Docker Image](https://hub.docker.com/repository/docker/brpaz/do-snapshot-pruner).
 
-
 ## Usage
 
 ```sh
-do-snapshot-pruner -n <days> -t <do_token>
+do-snapshot-pruner prune -t <do_token> -d <days>
 ```
-
-Where:
-
-* "n" -> The number of days before current date to delete. For Exemple if you see this value with "3", the tool will delete all the snaphots older than 3 days.
-* "t" -> The DigitalOcean API token. You can get yours [here](https://cloud.digitalocean.com/account/api/tokens). Optionally you can also set the "DO_TOKEN" envrionment variable.
 
 Or with docker:
 
 ```sh
-docker run -it brpaz/do-snapshot-pruner:latest -t <do_token> -n 5
+docker run -it brpaz/do-snapshot-pruner:latest -t <do_token> -d 5
 ```
+
+### Command Flags
+
+| Flag | Description                                                                                                                                                            | Default |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| -d   | Specifies the number of days whose older snapshots will be deleted                                                                                                     | 7 days  |
+| -t   | DitigalOcean API token - You can get yours [here](https://cloud.digitalocean.com/account/api/tokens). Optionally you can also set the "DO_TOKEN" envrionment variable. |         |
+| -r   | The types of snapshots to delete. you can filter by "volume" or "droplet                                                                                               | all     |  |
 
 ## Run tests
 
@@ -48,9 +50,9 @@ make test
 
 👤 **Bruno Paz**
 
-* Website: [brunopaz.net](https://brunopaz.net)
-* Github: [@brpaz](https://github.com/brpaz)
-* Twitter: [@brunopaz88](https://twitter.com/brunopaz88)
+  * Website: [brunopaz.dev](https://brunopaz.dev)
+  * Github: [@brpaz](https://github.com/brpaz)
+  * Twitter: [@brunopaz88](https://twitter.com/brunopaz88)
 
 ## 🤝 Contributing
 
@@ -68,6 +70,6 @@ Give a ⭐️ to the project, or just:
 
 ## 📝 License
 
-Copyright © 2019 [Bruno Paz](https://github.com/brpaz).
+Copyright © 2020 [Bruno Paz](https://github.com/brpaz).
 
 This project is [MIT](https://opensource.org/licenses/MIT) licensed.
